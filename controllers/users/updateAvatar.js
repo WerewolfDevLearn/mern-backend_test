@@ -3,7 +3,8 @@ const { ctrlWrapper } = require('../../decorators');
 const { cloudinary, HttpError } = require('../../utils');
 
 const updateAvatar = ctrlWrapper(async (req, res) => {
-  console.log('req: ', req);
+  console.log('req.file: ', req.file);
+  console.log('req.user: ', req.user);
 
   const { avatarId } = req.user;
   if (avatarId) await cloudinary.destroy(avatarId);
