@@ -3,10 +3,11 @@ const { ctrlWrapper } = require('../../decorators');
 const { cloudinary, HttpError } = require('../../utils');
 
 const updateAvatar = ctrlWrapper(async (req, res) => {
+  console.log('req: ', req);
+
   const { avatarId } = req.user;
-  console.log(avatarId);
   if (avatarId) await cloudinary.destroy(avatarId);
-  console.log(req.file);
+
   // eslint-disable-next-line camelcase
   const { url, public_id } = await cloudinary.upload(req.file.path);
   const avatar = { avatarUrl: url, avatarId: public_id };
