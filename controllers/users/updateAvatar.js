@@ -4,6 +4,7 @@ const { cloudinary, HttpError } = require('../../utils');
 
 const updateAvatar = ctrlWrapper(async (req, res) => {
   const { avatarId } = req.user;
+  console.log(avatarId);
   if (avatarId) await cloudinary.destroy(avatarId);
   console.log(req.file.path);
   // eslint-disable-next-line camelcase
