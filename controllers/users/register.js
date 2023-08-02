@@ -8,7 +8,6 @@ const { HttpError, sendEmail } = require('../../utils');
 
 const register = ctrlWrapper(async (req, res) => {
   const { name, email, password } = req.body;
-  console.log('HttpError: ', typeof HttpError);
 
   if (await User.findOne({ name })) throw HttpError(409);
   if (await User.findOne({ email })) throw HttpError(409);
