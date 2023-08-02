@@ -20,6 +20,7 @@ const options = {
 };
 
 const upload = async imagePath => {
+  console.log('imagePath: ', imagePath);
   try {
     const image = await cloudinary.uploader.upload(imagePath, options);
     console.log('image: ', image);
