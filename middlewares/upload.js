@@ -8,7 +8,7 @@ const avatarSize = 1048576;
 const multerConfig = multer.diskStorage({
   destination: tempDir,
   filename: (req, file, cb) => {
-    console.log('file: ', file);
+    console.log('upload file: ', file);
 
     cb(null, file.originalname);
   },
