@@ -4,9 +4,6 @@ const fs = require('fs/promises');
 const HttpError = require('./HttpError');
 
 const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_SECRET_KEY } = process.env;
-console.log('CLOUDINARY_SECRET_KEY: ', CLOUDINARY_SECRET_KEY);
-console.log('CLOUDINARY_API_KEY: ', CLOUDINARY_API_KEY);
-console.log('CLOUDINARY_CLOUD_NAME: ', CLOUDINARY_CLOUD_NAME);
 
 cloudinary.config({
   cloud_name: CLOUDINARY_CLOUD_NAME,
@@ -23,10 +20,9 @@ const options = {
 };
 
 const upload = async imagePath => {
-  console.log('imagePath: ', imagePath);
   try {
     const image = await cloudinary.uploader.upload(imagePath, options);
-    console.log('image: ', image);
+
     await fs.unlink(imagePath);
     return image;
   } catch (error) {
