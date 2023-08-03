@@ -1,16 +1,28 @@
 const User = require('../../models/user');
 const { ctrlWrapper } = require('../../decorators');
 const { HttpError, sendEmail } = require('../../utils');
-
+const jwt = require('jsonwebtoken');
+const { SECRET_KEY } = process.env;
 const verifyEmail = ctrlWrapper(async (req, res) => {
   const { verificationCode } = req.params;
   const user = await User.findOne({ verificationCode });
   if (!user) throw HttpError(401, 'Email not verified');
-  await User.findByIdAndUpdate(user._id, {
+  const payload = { id: user._id };
+  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '23h' });
+  const returnedUser = await User.findByIdAndUpdate(user._id, {
     verifiedEmail: true,
     verificationCode: '',
+    token,
   });
-  res.json({ message: `Email ${user.email} verified` });
+  res.json({
+    token,
+    user: {
+      name: returnedUser.name,
+      email: returnedUser.email,
+      avatarUrl: returnedUser.avatarUrl,
+    },
+  });
+  // res.json({ message: `Email ${user.email} verified` });
 });
 
 const resendEmail = ctrlWrapper(async (req, res) => {
