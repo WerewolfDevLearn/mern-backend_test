@@ -12,7 +12,7 @@ router.post('/register', validateBody(schemas.registerSchema), ctrl.register);
 router.post('/login', validateBody(schemas.loginSchema), ctrl.login);
 router.post('/logout', authenticate, ctrl.logout);
 router.get('/current', authenticate, ctrl.getCurrent);
-router.patch('/avatar', authenticate, uploadAvatar, ctrl.updateAvatar);
+router.patch('/avatar', authenticate, uploadAvatar);
 router.get('/verify/:verificationCode', ctrl.verifyEmail);
 router.post('/verify', validateBody(schemas.verifyEmailSchema), ctrl.resendEmail);
 
