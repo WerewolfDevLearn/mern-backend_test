@@ -24,7 +24,15 @@ const register = ctrlWrapper(async (req, res) => {
     avatarUrl,
     verificationCode,
   });
-  res.status(201).json(newUser);
+  res.status(201).json({
+    token: null,
+    user: {
+      name: newUser.name,
+      email: newUser.email,
+      avatarUrl: newUser.avatarUrl,
+      verifiedEmail: newUser.verifiedEmail,
+    },
+  });
 });
 
 module.exports = register;

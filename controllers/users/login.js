@@ -22,6 +22,7 @@ const login = ctrlWrapper(async (req, res) => {
       name: returnedUser.name,
       email: returnedUser.email,
       avatarUrl: returnedUser.avatarUrl,
+      verifiedEmail: returnedUser.verifiedEmail,
     },
   });
 });
