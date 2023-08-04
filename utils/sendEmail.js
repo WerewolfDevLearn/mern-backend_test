@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const { UKR_NET_EMAIL, UKR_NET_PASSWORD, BASE_URL } = process.env;
+const { UKR_NET_EMAIL, UKR_NET_PASSWORD } = process.env;
 
 const nodemailerConfig = {
   host: 'smtp.ukr.net',
