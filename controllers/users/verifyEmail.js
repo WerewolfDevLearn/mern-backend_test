@@ -15,11 +15,13 @@ const verifyEmail = ctrlWrapper(async (req, res) => {
     token,
   });
   res.json({
+    message: `Email ${user.email} verified`,
     token,
     user: {
       name: returnedUser.name,
       email: returnedUser.email,
       avatarUrl: returnedUser.avatarUrl,
+      verifiedEmail: returnedUser.verifiedEmail,
     },
   });
   // res.json({ message: `Email ${user.email} verified` });
