@@ -20,9 +20,9 @@ const sendEmail = async (to, verificationCode) => {
     to,
     subject: 'Email verification',
     text: 'Hello!',
-    html:
-      'Hello! Click the link below to email verification.' +
-      `<a href='${BASE_URL}/verify/${verificationCode}' target='_blank'>✔ Click the link to verify <b>${to}</b></a>`, // html body
+    html: 'Plaese enter this "code" at verify page' + `${verificationCode}`,
+    // 'Hello! Click the link below to email verification.' +
+    // `<a href='${BASE_URL}/verify/${verificationCode}' target='_blank'>✔ Click the link to verify <b>${to}</b></a>`, // html body
   };
   try {
     await transport.sendMail(emailOptions);
