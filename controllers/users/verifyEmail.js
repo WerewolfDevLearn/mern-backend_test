@@ -3,6 +3,7 @@ const { ctrlWrapper } = require('../../decorators');
 const { HttpError, sendEmail } = require('../../utils');
 const jwt = require('jsonwebtoken');
 const { SECRET_KEY } = process.env;
+
 const verifyEmail = ctrlWrapper(async (req, res) => {
   const { verificationCode } = req.params;
   const user = await User.findOne({ verificationCode });
@@ -14,14 +15,14 @@ const verifyEmail = ctrlWrapper(async (req, res) => {
     verificationCode: '',
     token,
   });
-  res.json({
+  res.status(201).json({
     message: `Email ${user.email} verified`,
     token,
     user: {
       name: returnedUser.name,
       email: returnedUser.email,
       avatarUrl: returnedUser.avatarUrl,
-      verifiedEmail: returnedUser.verifiedEmail,
+      verifiedEmail: true,
     },
   });
   // res.json({ message: `Email ${user.email} verified` });
